@@ -1,9 +1,9 @@
 ![hypermancer gif](./hypermancer.gif)
 
-A Cyberpunk terminal theme for [Hyper](www.hyper.is), inspired by Neuromancer.
+A glitchy, cyberpunk theme for [Hyper](www.hyper.is), inspired by Neuromancer.
 
 ## Features:
-- 80's inspired color theme
+- 80's inspired colors
 - Glitch text
 - Sick terminal shadow on the header
 - Homage to the Hosaka Ono-Sendai background

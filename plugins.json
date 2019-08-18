@@ -1,0 +1,12 @@
+{
+  "name": "hyper-mancer",
+  "description": "A glitchy, cyberpunk theme for your terminal, inspired by Neuromancer.",
+  "type": "theme",
+  "preview": "",
+  "colors": [
+    "#ea202d",
+    "#2cf5f4",
+    "#da5bcd"
+  ],
+  "dateAdded": "1566123212332"
+}

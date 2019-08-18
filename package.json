@@ -1,16 +1,20 @@
 {
-  "name": "hypermancer",
+  "name": "hyper-mancer",
   "version": "1.0.2",
-  "description": "A cyberpunk theme for your terminal, inspired by Neuromancer.",
+  "description": "A glitchy, cyberpunk theme for your terminal, inspired by Neuromancer.",
   "main": "index.js",
-  "keywords": ["hyper-terminal"],
+  "keywords": [
+    "hyper-terminal",
+    "hyper-theme"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "@zachcaceres",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/zcaceres/hypermancer.git"
-  }
+    "type": "git",
+    "url": "https://github.com/zcaceres/hypermancer.git"
+  },
+  "dependencies": {}
 }

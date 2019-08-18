@@ -1,5 +1,3 @@
-
-
 /**
  * TODO:
  * 5. bell sound
