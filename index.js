@@ -19,6 +19,7 @@ exports.decorateConfig = (config) => {
   return Object.assign({}, config, {
     foregroundColor: BLUE,
     backgroundColor: 'black',
+    fontSize: 16,
     fontFamily: '"Share Tech Mono"',
     borderColor: `rgb(${HOSAKA_RED})`,
     selectionColor: `rgba(${HOSAKA_RED}, 0.3)`,
