@@ -1,6 +1,14 @@
-# hypermancer
+![hypermancer gif](./hypermancer.gif)
 
 A Cyberpunk terminal theme for [Hyper](www.hyper.is), inspired by Neuromancer.
+
+## Features:
+- 80's inspired color theme
+- Glitch text
+- Sick terminal shadow on the header
+- Homage to the Hosaka Ono-Sendai background
+
+![hypermancer theme screenshot](./hypermancer.png)
 
 ## Font
 Add this cool monospaced font to your system if you'd like to get a full terminal look: [Share Tech Mono](https://fonts.google.com/specimen/Share+Tech+Mono?selection.family=Share+Tech+Mono).

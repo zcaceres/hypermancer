@@ -6,11 +6,12 @@
 */
 
 const onoSendai = require('./ono-sendai.js')
-const HUE_SHIFT_INTENSITY = 6;
+const HUE_SHIFT_INTENSITY = 8;
 const YELLOW = '#FFFA3B'
 const GREEN = '#21FF58'
 const PURPLE = 'rgb(218, 91, 205)'
 const BLUE = 'rgb(44, 255, 254)'
+const FONT_SIZE = 16
 
 const HOSAKA_RED = '234, 32, 45'
 const WHITE = '#FFF'
@@ -19,7 +20,7 @@ exports.decorateConfig = (config) => {
   return Object.assign({}, config, {
     foregroundColor: BLUE,
     backgroundColor: 'black',
-    fontSize: 16,
+    fontSize: FONT_SIZE,
     fontFamily: '"Share Tech Mono"',
     borderColor: `rgb(${HOSAKA_RED})`,
     selectionColor: `rgba(${HOSAKA_RED}, 0.3)`,
@@ -174,6 +175,29 @@ exports.decorateHyper = (HyperTerm, {
   return class extends React.Component {
     constructor(props, context) {
       super(props, context);
+      this._intervalID = null
+      this.state = {
+        shadow: true
+      }
+      this._renderShadow = this._renderShadow.bind(this);
+    }
+
+    componentWillMount() {
+      this._intervalID = setInterval(this._renderShadow, 120)
+    }
+
+    componentWillUnmount() {
+      clearInterval(this._intervalID);
+    }
+
+    /**
+     * this is a nonsense state trigger to make sure the component re-renders
+     * each time the interval for _renderShadow fires
+     */
+    _renderShadow () {
+      this.setState({
+        shadow: !this.state.shadow
+      })
     }
 
     render() {
@@ -184,7 +208,7 @@ exports.decorateHyper = (HyperTerm, {
         customCSS: `
           ${this.props.customCSS || ''}
           .tabs_nav {
-            font-size: 14px;
+            font-size: ${FONT_SIZE}px;
           }
           .tabs_nav .tabs_title {
             color: rgb(${HOSAKA_RED}) !important;
