@@ -77,7 +77,8 @@ exports.decorateTerm = (Terms, { React }) => {
             this._canvasContext = this._canvas.getContext('2d');
             this._terminal.appendChild(this._canvas);
 
-            window.requestAnimationFrame(this._glitchText);
+            window.requestAnimationFrame(this._glitchText)
+
             /**
              * Listens for changes to the canvas so that the injected canvas can be the same height.
              */
@@ -181,7 +182,7 @@ exports.decorateHyper = (HyperTerm, {
     }
 
     componentWillMount() {
-      this._intervalID = setInterval(this._renderShadow, 120)
+      this._intervalID = setInterval(this._renderShadow, 220)
     }
 
     componentWillUnmount() {
