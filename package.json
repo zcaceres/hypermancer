@@ -1,18 +1,16 @@
 {
-  "name": "hyper-cyberpunk",
+  "name": "hypermancer",
   "version": "1.0.2",
-  "description": "A cyberpunk filter for hyper terminal.",
+  "description": "A cyberpunk theme for your terminal, inspired by Neuromancer.",
   "main": "index.js",
+  "keywords": ["hyper-terminal"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mannie Festo",
-  "license": "ISC",
-  "dependencies": {
-    "lodash.throttle": "^4.1.1"
-  },
+  "author": "@zachcaceres",
+  "license": "MIT",
   "repository": {
     "type" : "git",
-    "url" : "https://github.com/manniefesto/hyper-cyberpunk.git"
+    "url" : "https://github.com/zcaceres/hypermancer.git"
   }
 }

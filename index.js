@@ -2,27 +2,14 @@
 
 /**
  * TODO:
- * 1. better colors
  * 5. bell sound
- * 2. Ono sendai background on main terminal
- * 3. Bladerunner theme tomorrow
- * 3. borrow STATIC from hyper punk
 */
 
-const screensaver = require('./screensaver.js')
-const noise1Png = require('./noise1');
-const noise2Png = require('./noise2');
-const noise3Png = require('./noise3');
-const HUE_SHIFT_INTENSITY = 4;
-const BRIGHT_GREEN = '#28FC91';
-const DARK_GREEN = '#0F2218';
-const TEXT_GREEN = '51, 255, 0';
-
-const BACKGROUND = 'rgb(31, 15, 28)'
-const YELLOW = '#FFFA3B' // 'rgb(178, 138, 50)'
-const GREEN = '#21FF58'// 'rgb(49, 194, 30)'
+const onoSendai = require('./ono-sendai.js')
+const HUE_SHIFT_INTENSITY = 6;
+const YELLOW = '#FFFA3B'
+const GREEN = '#21FF58'
 const PURPLE = 'rgb(218, 91, 205)'
-const RED = 'rgb(233, 100, 97)'
 const BLUE = 'rgb(44, 255, 254)'
 
 const HOSAKA_RED = '234, 32, 45'
@@ -32,14 +19,16 @@ exports.decorateConfig = (config) => {
   return Object.assign({}, config, {
     foregroundColor: BLUE,
     backgroundColor: 'black',
+    fontFamily: '"Share Tech Mono"',
     borderColor: `rgb(${HOSAKA_RED})`,
+    selectionColor: `rgba(${HOSAKA_RED}, 0.3)`,
     cursorColor: `rgb(${HOSAKA_RED})`,
     colors: [
       YELLOW,
       `rgb(${HOSAKA_RED})`,
       PURPLE,
-      BLUE,
       GREEN,
+      BLUE,
       WHITE
     ]
   });
@@ -79,7 +68,7 @@ exports.decorateTerm = (Terms, { React }) => {
             this._canvas.width = this._textCanvas.width
             this._canvas.height = this._textCanvas.height
 
-            this._canvas.style.backgroundImage = screensaver
+            this._canvas.style.backgroundImage = onoSendai
             this._canvas.style.backgroundPosition = 'center center'
             this._canvas.style.backgroundSize = 'contain'
             this._canvas.style.backgroundRepeat = 'no-repeat'
@@ -130,10 +119,12 @@ exports.decorateTerm = (Terms, { React }) => {
                 clearTimeout(this.glitchingTimeout);
             }
 
+            const randomDelay = getRandomInt(200, 400)
+
             this.glitchingTimeout = setTimeout(() => {
                 const destCtx = this._canvas.getContext('2d');
                 destCtx.clearRect(0, 0, this._canvas.width, this._canvas.height);
-            }, 300);
+            }, randomDelay);
         }
 
         onDecorated(term) {
@@ -182,40 +173,17 @@ exports.decorateHyper = (HyperTerm, {
   return class extends React.Component {
     constructor(props, context) {
       super(props, context);
-      this.state = {
-        noise: 0
-      };
-      this._flip = this._flip.bind(this);
-      this._intervalID = null;
-    }
-
-    _flip() {
-      this.setState({
-        noise: (this.state.noise + 1) % 3
-      });
-    }
-
-    componentWillMount() {
-      this._intervalID = setInterval(this._flip, 120);
     }
 
     render() {
-      const noisePng = [noise1Png, noise2Png, noise3Png][this.state.noise];
-      const noiseCss = `
-        // background-image: ${noisePng};
-        // background-size: 100px 100px;
-      `;
       const textShadow = generateTextShadow();
 
       const overridenProps = {
         backgroundColor: 'black',
         customCSS: `
           ${this.props.customCSS || ''}
-          body {
-            ${noiseCss} !important;
-          }
           .tabs_nav {
-            ${noiseCss}
+            font-size: 14px;
           }
           .tabs_nav .tabs_title {
             color: rgb(${HOSAKA_RED}) !important;
@@ -237,7 +205,6 @@ exports.decorateHyper = (HyperTerm, {
           }
           .tab_tab.tab_active {
             height: calc(100% + 1px);
-            ${noiseCss}
             border-left: 0px solid rgb(${HOSAKA_RED}) !important;
             ${textShadow}
             font-weight: bold;
@@ -252,9 +219,9 @@ exports.decorateHyper = (HyperTerm, {
       };
       return React.createElement(HyperTerm, Object.assign({}, this.props, overridenProps));
     }
-
-    componentWillUnmount() {
-      clearInterval(this._intervalID);
-    }
   }
+}
+
+function getRandomInt(min, max) {
+  return Math.max(min, Math.floor(min, Math.random() * Math.floor(max)))
 }
