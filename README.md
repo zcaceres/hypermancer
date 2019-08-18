@@ -1,4 +1,4 @@
-![hypermancer gif](./hypermancer.gif)
+![hypermancer gif](./hypermancer-big.gif)
 
 A glitchy, cyberpunk theme for [Hyper](www.hyper.is), inspired by Neuromancer.
 
