@@ -3,13 +3,14 @@
  * 5. bell sound
 */
 
+const throttle = require('lodash.throttle')
 const onoSendai = require('./ono-sendai.js')
 const HUE_SHIFT_INTENSITY = 8;
 const YELLOW = '#FFFA3B'
 const GREEN = '#21FF58'
 const PURPLE = 'rgb(218, 91, 205)'
 const BLUE = 'rgb(44, 255, 254)'
-const FONT_SIZE = 16
+const FONT_SIZE_PX = 14
 
 const HOSAKA_RED = '234, 32, 45'
 const WHITE = '#FFF'
@@ -18,7 +19,7 @@ exports.decorateConfig = (config) => {
   return Object.assign({}, config, {
     foregroundColor: BLUE,
     backgroundColor: 'black',
-    fontSize: FONT_SIZE,
+    fontSize: FONT_SIZE_PX,
     fontFamily: '"Share Tech Mono"',
     borderColor: `rgb(${HOSAKA_RED})`,
     selectionColor: `rgba(${HOSAKA_RED}, 0.3)`,
@@ -47,7 +48,7 @@ exports.decorateTerm = (Terms, { React }) => {
             this._isGlitching = false
             this._canvas = null;
             this._textCanvas = null;
-            this._glitchText = this._glitchText.bind(this);
+            this._glitchText = throttle(this._glitchText.bind(this), 500)
             this._resizeCanvas = this._resizeCanvas.bind(this);
         }
 
@@ -159,7 +160,6 @@ exports.decorateTerm = (Terms, { React }) => {
     };
 };
 
-
 function generateTextShadow() {
   let x = -1 + 2 * Math.random();
   x = x * x;
@@ -169,7 +169,6 @@ function generateTextShadow() {
 
 exports.decorateHyper = (HyperTerm, {
   React,
-  notify
 }) => {
   return class extends React.Component {
     constructor(props, context) {
@@ -206,27 +205,37 @@ exports.decorateHyper = (HyperTerm, {
         backgroundColor: 'black',
         customCSS: `
           ${this.props.customCSS || ''}
+
           .tabs_nav {
-            font-size: ${FONT_SIZE}px;
+            font-size: ${FONT_SIZE_PX}px;
           }
+
           .tabs_nav .tabs_title {
             color: rgb(${HOSAKA_RED}) !important;
             font-weight: bold !important;
             ${textShadow}
           }
 
+          .tabs_borderShim {
+            display: none;
+          }
+
           .tabs_list {
             background-color: rgb(${HOSAKA_RED}) !important;
             background-image: none !important;
+            margin-left: 0px;
           }
+
           .tab_tab {
             border-width: 0px !important;
             border-right: 0px solid transparent !important;
-            border-left: 1px solid rgb(${HOSAKA_RED}) !important;
+            background-color: black;
           }
+
           .tab_tab:not(.tab_active) {
             color: rgba(${HOSAKA_RED}, 0.7);
           }
+
           .tab_tab.tab_active {
             height: calc(100% + 1px);
             border-left: 0px solid rgb(${HOSAKA_RED}) !important;
@@ -234,6 +243,7 @@ exports.decorateHyper = (HyperTerm, {
             font-weight: bold;
             color: rgb(${HOSAKA_RED});
           }
+
           /* Hide hardcoded black bottom border */
           .tab_active:before {
             border-bottom: none !important;

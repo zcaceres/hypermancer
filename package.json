@@ -16,5 +16,7 @@
     "type": "git",
     "url": "https://github.com/zcaceres/hypermancer.git"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash.throttle": "^4.1.1"
+  }
 }
