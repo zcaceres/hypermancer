@@ -114,19 +114,20 @@ exports.decorateTerm = (Terms, { React }) => {
         }
 
         onCursorMove(cursorFrame) {
-            if (this.props.onCursorMove) this.props.onCursorMove(cursorFrame);
-            window.requestAnimationFrame(this._glitchText);
+          if (this.props.onCursorMove) this.props.onCursorMove(cursorFrame);
+          // TEMP: DISABLE THIS UNTIL WE CAN FIGURE OUT HOW TO MAKE GLITCH MORE RELIABLE
+            // window.requestAnimationFrame(this._glitchText);
 
-            if (this.glitchingTimeout !== null) {
-                clearTimeout(this.glitchingTimeout);
-            }
+            // if (this.glitchingTimeout !== null) {
+            //     clearTimeout(this.glitchingTimeout);
+            // }
 
-            const randomDelay = getRandomInt(200, 400)
+            // const randomDelay = getRandomInt(200, 400)
 
-            this.glitchingTimeout = setTimeout(() => {
-                const destCtx = this._canvas.getContext('2d');
-                destCtx.clearRect(0, 0, this._canvas.width, this._canvas.height);
-            }, randomDelay);
+            // this.glitchingTimeout = setTimeout(() => {
+            //     const destCtx = this._canvas.getContext('2d');
+            //     destCtx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+            // }, randomDelay);
         }
 
         onDecorated(term) {
