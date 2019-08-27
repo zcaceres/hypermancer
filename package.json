@@ -1,6 +1,6 @@
 {
   "name": "hyper-mancer",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A glitchy, cyberpunk theme for your terminal, inspired by Neuromancer.",
   "main": "index.js",
   "keywords": [

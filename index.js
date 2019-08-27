@@ -10,7 +10,7 @@ const YELLOW = '#FFFA3B'
 const GREEN = '#21FF58'
 const PURPLE = 'rgb(218, 91, 205)'
 const BLUE = 'rgb(44, 255, 254)'
-const FONT_SIZE_PX = 14
+const FONT_SIZE_PX = 16
 
 const HOSAKA_RED = '234, 32, 45'
 const WHITE = '#FFF'
@@ -215,6 +215,10 @@ exports.decorateHyper = (HyperTerm, {
             color: rgb(${HOSAKA_RED}) !important;
             font-weight: bold !important;
             ${textShadow}
+          }
+
+          .notifications_view svg g {
+            fill: rgb(${HOSAKA_RED});
           }
 
           .tabs_borderShim {
