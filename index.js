@@ -78,7 +78,7 @@ exports.decorateTerm = (Terms, { React }) => {
             this._canvasContext = this._canvas.getContext('2d');
             this._terminal.appendChild(this._canvas);
 
-            window.requestAnimationFrame(this._glitchText)
+            // window.requestAnimationFrame(this._glitchText)
 
             /**
              * Listens for changes to the canvas so that the injected canvas can be the same height.
