@@ -217,7 +217,7 @@ exports.decorateHyper = (HyperTerm, {
             ${textShadow}
           }
 
-          .notifications_view svg g {
+          .wrapper svg g {
             fill: rgb(${HOSAKA_RED});
           }
 
